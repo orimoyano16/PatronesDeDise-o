@@ -2,7 +2,6 @@
 
 ## _Integrantes: Roman Acuña, Santiago Marranti, Oriana Moyano, Ariadna Santillan_
 
-
 ## Problema 1: El Sistema de Envíos Todopoderoso
 Principios a aplicar: Single Responsibility Principle (SRP) y Open/Closed Principle (OCP).
 El Escenario
@@ -42,6 +41,9 @@ Tu Reto
 Separa las responsabilidades en clases independientes (SRP).
 Haz que el sistema de envíos y el de pagos sean extensibles sin modificar el código existente, utilizando interfaces o clases abstractas (OCP).
 
+<img width="703" height="188" alt="image" src="https://github.com/user-attachments/assets/93f3b585-d057-425c-9f70-6eaaf115f114" />
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Problema 2: El Procesador de Documentos Rebelde
 Principios a aplicar: Liskov Substitution Principle (LSP) y Interface Segregation Principle (ISP).
 El Escenario
@@ -85,6 +87,10 @@ Tu Reto
 Divide la interfaz DocumentHandler en interfaces más pequeñas y específicas para que las clases no dependan de métodos que no usan (ISP).
 Asegúrate de que cualquier subclase o implementación pueda sustituir a su firma base sin romper el programa (LSP).
 
+
+<img width="708" height="250" alt="image" src="https://github.com/user-attachments/assets/b92521b6-0db8-4f6e-b626-9b10e76226fb" />
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Problema 3: El Interruptor Rígido
 Principio a aplicar: Dependency Inversion Principle (DIP).
 El Escenario
@@ -112,6 +118,11 @@ class Switch {
         }
     }
 }
+
+<img width="727" height="236" alt="image" src="https://github.com/user-attachments/assets/5eded53b-483a-4d85-922c-86cd53048f85" /> 
+
+
+
 
 Tu Reto
 Crea una abstracción (interface) que defina el comportamiento de cualquier dispositivo que se pueda encender/apagar.
