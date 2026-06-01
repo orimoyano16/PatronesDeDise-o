@@ -1,11 +1,16 @@
-// 1. Entidad Básica
+// 1. Entidad Básica (Adaptada para Node 24)
 class Order {
-    constructor(public id: string, public totalAmount: number) {}
+    id: string;
+    totalAmount: number;
+
+    constructor(id: string, totalAmount: number) {
+        this.id = id;
+        this.totalAmount = totalAmount;
+    }
 }
 
 // --- APLICANDO OCP: Interfaces para Envíos y Pagos ---
 
-// Interfaz que define el contrato para cualquier método de envío
 interface ShippingMethod {
     calculateCost(): number;
 }
@@ -26,7 +31,6 @@ class ExpressShipping implements ShippingMethod {
     }
 }
 
-// ¡NUEVO! Podemos agregar entrega con drones sin modificar el OrderService original
 class DroneShipping implements ShippingMethod {
     calculateCost(): number {
         const cost = 50;
@@ -35,7 +39,6 @@ class DroneShipping implements ShippingMethod {
     }
 }
 
-// Interfaz que define el contrato para cualquier método de pago
 interface PaymentMethod {
     process(amount: number): void;
 }
@@ -54,51 +57,36 @@ class CreditCardPayment implements PaymentMethod {
 
 // --- APLICANDO SRP: Separación de Responsabilidades ---
 
-// Clase dedicada exclusivamente a las notificaciones
 class NotificationService {
     sendOrderConfirmation(orderId: string): void {
         console.log(`Email enviado: Su pedido ${orderId} ha sido procesado.`);
     }
 }
 
-// El OrderService ahora solo coordina, no implementa la lógica de negocio profunda
 class OrderService {
-    // Inyectamos el servicio de notificaciones
-    constructor(private notificationService: NotificationService) {}
+    notificationService: NotificationService;
 
-    // Inyectamos las abstracciones (interfaces), no las implementaciones concretas
+    // Constructor adaptado para Node 24
+    constructor(notificationService: NotificationService) {
+        this.notificationService = notificationService;
+    }
+
     processOrder(order: Order, shipping: ShippingMethod, payment: PaymentMethod): void {
-        
-        // 1. Delegamos el cálculo del envío
         const shippingCost = shipping.calculateCost();
         const totalToPay = order.totalAmount + shippingCost;
 
-        // 2. Delegamos el procesamiento del pago
         payment.process(totalToPay);
 
-        // 3. Delegamos el envío de la notificación
         this.notificationService.sendOrderConfirmation(order.id);
     }
 }
 
 // --- EJEMPLO DE USO ---
-
+console.log("=== EJECUCIÓN PROBLEMA 1 ===");
 const myOrder = new Order("ORD-001", 100);
 const notificationService = new NotificationService();
 const orderService = new OrderService(notificationService);
 
-// Ejecución con métodos actuales
-orderService.processOrder(
-    myOrder, 
-    new ExpressShipping(), 
-    new CreditCardPayment()
-);
-
-console.log("--------------------------------------------------");
-
-// Ejecución con el nuevo método de Drones sin haber tocado OrderService
-orderService.processOrder(
-    myOrder, 
-    new DroneShipping(), 
-    new PayPalPayment()
-);
+orderService.processOrder(myOrder, new ExpressShipping(), new CreditCardPayment());
+console.log("---");
+orderService.processOrder(myOrder, new DroneShipping(), new PayPalPayment());
