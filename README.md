@@ -128,3 +128,14 @@ Tu Reto
 Crea una abstracción (interface) que defina el comportamiento de cualquier dispositivo que se pueda encender/apagar.
 Aplica Inyección de Dependencias para que el Switch reciba el dispositivo desde el exterior, logrando que dependa de la abstracción y no de la implementación concreta (DIP).
 
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+Pruebas implementadas en cucumber 
+
+<img width="200" height="200" alt="logo cucumber" src="https://github.com/user-attachments/assets/0458c950-5a14-4795-8e15-1587d03c7020" />
+
+
+
+
+
