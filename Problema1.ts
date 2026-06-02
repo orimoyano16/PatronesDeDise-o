@@ -1,5 +1,5 @@
 // 1. Entidad Básica (Adaptada para Node 24)
-class Order {
+export class Order {
     id: string;
     totalAmount: number;
 
@@ -11,11 +11,11 @@ class Order {
 
 // --- APLICANDO OCP: Interfaces para Envíos y Pagos ---
 
-interface ShippingMethod {
+export interface ShippingMethod {
     calculateCost(): number;
 }
 
-class StandardShipping implements ShippingMethod {
+export class StandardShipping implements ShippingMethod {
     calculateCost(): number {
         const cost = 10;
         console.log(`Calculando envío para standard: $${cost}`);
@@ -23,7 +23,7 @@ class StandardShipping implements ShippingMethod {
     }
 }
 
-class ExpressShipping implements ShippingMethod {
+export class ExpressShipping implements ShippingMethod {
     calculateCost(): number {
         const cost = 25;
         console.log(`Calculando envío para express: $${cost}`);
@@ -31,7 +31,7 @@ class ExpressShipping implements ShippingMethod {
     }
 }
 
-class DroneShipping implements ShippingMethod {
+export class DroneShipping implements ShippingMethod {
     calculateCost(): number {
         const cost = 50;
         console.log(`Calculando envío para drones: $${cost}`);
@@ -39,17 +39,17 @@ class DroneShipping implements ShippingMethod {
     }
 }
 
-interface PaymentMethod {
+export interface PaymentMethod {
     process(amount: number): void;
 }
 
-class PayPalPayment implements PaymentMethod {
+export class PayPalPayment implements PaymentMethod {
     process(amount: number): void {
         console.log(`Procesando pago de $${amount} vía PayPal...`);
     }
 }
 
-class CreditCardPayment implements PaymentMethod {
+export class CreditCardPayment implements PaymentMethod {
     process(amount: number): void {
         console.log(`Cargando $${amount} a la tarjeta de crédito...`);
     }
@@ -57,13 +57,13 @@ class CreditCardPayment implements PaymentMethod {
 
 // --- APLICANDO SRP: Separación de Responsabilidades ---
 
-class NotificationService {
+export class NotificationService {
     sendOrderConfirmation(orderId: string): void {
         console.log(`Email enviado: Su pedido ${orderId} ha sido procesado.`);
     }
 }
 
-class OrderService {
+export class OrderService {
     notificationService: NotificationService;
 
     // Constructor adaptado para Node 24
@@ -82,7 +82,7 @@ class OrderService {
 }
 
 // --- EJEMPLO DE USO ---
-console.log("=== EJECUCIÓN PROBLEMA 1 ===");
+/* console.log("=== EJECUCIÓN PROBLEMA 1 ===");
 const myOrder = new Order("ORD-001", 100);
 const notificationService = new NotificationService();
 const orderService = new OrderService(notificationService);
@@ -90,3 +90,4 @@ const orderService = new OrderService(notificationService);
 orderService.processOrder(myOrder, new ExpressShipping(), new CreditCardPayment());
 console.log("---");
 orderService.processOrder(myOrder, new DroneShipping(), new PayPalPayment());
+*/

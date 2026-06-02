@@ -1,30 +1,30 @@
 // --- APLICANDO ISP: Interfaces segregadas ---
-interface Openable {
+export interface Openable {
     open(): void;
 }
 
-interface Editable {
+export interface Editable {
     edit(): void;
 }
 
-interface Savable {
+export interface Savable {
     save(): void;
 }
 
 // WordDocument implementa todas porque soporta todas las operaciones
-class WordDocument implements Openable, Editable, Savable {
+export class WordDocument implements Openable, Editable, Savable {
     open() { console.log("Abriendo documento Word..."); }
     edit() { console.log("Editando texto en Word..."); }
     save() { console.log("Guardando cambios del Word en disco..."); }
 }
 
 // PDFDocument ahora solo implementa lo que realmente puede hacer (Openable)
-class PDFDocument implements Openable {
+export class PDFDocument implements Openable {
     open() { console.log("Abriendo PDF protegido (Solo lectura)..."); }
 }
 
 // --- APLICANDO LSP: El procesador interactúa de forma segura ---
-class DocumentProcessor {
+export class DocumentProcessor {
     
     // Solo pide garantía de que el documento se puede abrir
     readDocument(doc: Openable) {
@@ -39,7 +39,7 @@ class DocumentProcessor {
 }
 
 // --- EJEMPLO DE USO ---
-console.log("\n=== EJECUCIÓN PROBLEMA 2 ===");
+/* console.log("\n=== EJECUCIÓN PROBLEMA 2 ===");
 const processor = new DocumentProcessor();
 const miWord = new WordDocument();
 const miPdf = new PDFDocument();
@@ -50,4 +50,4 @@ processor.processEditableDocument(miWord);
 
 console.log("\nProcesando PDF:");
 processor.readDocument(miPdf);
-// processor.processEditableDocument(miPdf); // Esto ahora marca un error en tiempo de compilación, previniendo crashes.
+// processor.processEditableDocument(miPdf); // Esto ahora marca un error en tiempo de compilación, previniendo crashes. */

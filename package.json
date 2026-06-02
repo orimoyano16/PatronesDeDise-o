@@ -1,0 +1,27 @@
+{
+  "name": "patrones-diseno",
+  "version": "1.0.0",
+  "description": "Principios a aplicar: Single Responsibility Principle (SRP) y Open/Closed Principle (OCP).\r El Escenario\r Tienes una clase OrderService que se encarga de procesar un pedido. El problema es que hace de todo: calcula el envío, procesa el pago y envía notificaciones. Además, si mañana queremos agregar un nuevo método de envío (como \"Entrega con Drones\"), tendríamos que modificar la clase existente.\r Código Acoplado (A refactorizar)\r TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orimoyano16/PatronesDeDise-o.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/orimoyano16/PatronesDeDise-o/issues"
+  },
+  "homepage": "https://github.com/orimoyano16/PatronesDeDise-o#readme",
+  "devDependencies": {
+    "@cucumber/cucumber": "^13.0.0",
+    "@types/node": "^25.9.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  }
+}
